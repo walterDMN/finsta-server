@@ -9,6 +9,20 @@ var usersRouter = require('./routes/users');
 const postRouter = require('./routes/postRouter');
 const messageRouter = require('./routes/messageRouter');
 
+const mongoose = require('mongoose');
+
+const url = 'mongodb://localhost:27017/finstagram';
+const connect = mongoose.connect(url, {
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
+
+connect.then(() => console.log('Connected correctly to server'),
+    err => console.log(err)
+);
+
 var app = express();
 
 // view engine setup

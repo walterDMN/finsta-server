@@ -1,46 +1,75 @@
 const express = require('express');
+const Message = require('../models/message');
+
 const messageRouter = express.Router();
 
 messageRouter.route('/')
-.all((req, res, next) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    next();
+.get((req, res, next) => {
+    Message.find()
+    .then(messages => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(messages);
+    })
+    .catch(err => next(err));
 })
-.get((req, res) => {
-    res.end('Will send all the messages to you');
-})
-.post((req, res) => {
-    res.end(`Will add the message: ${req.body.name} with description: ${req.body.description}`);
+.post((req, res, next) => {
+    Message.create(req.body)
+    .then(message => {
+        console.log('Partner created ', message);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(message);
+    })
+    .catch(err => next(err));
 })
 .put((req, res) => {
     res.statusCode = 403;
     res.end('PUT operation not supported on /messages');
 })
-.delete((req, res) => {
-    res.end('Deleting all messages');
+.delete((req, res, next) => {
+    Message.deleteMany()
+    .then(response => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(response);
+    })
+    .catch(err => next(err));
 });
 
 messageRouter.route('/:messageId')
-.all((req, res, next) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    next();
-})
-.get((req, res) => {
-    res.end(`Will send details of the message: ${req.params.messageId} to you`);
+.get((req, res, next) => {
+    Message.findById(req.params.messageId)
+    .then(message => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(message);
+    })
+    .catch(err => next(err));
 })
 .post((req, res) => {
     res.statusCode = 403;
     res.end(`POST operation not supported on /messages/${req.params.messageId}`);
 })
-.put((req, res) => {
-    res.write(`Updating the message: ${req.params.messageId}\n`);
-    res.end(`Will update the message: ${req.body.name} 
-        with description: ${req.body.description}`);
+.put((req, res, next) => {
+    Message.findByIdAndUpdate(req.params.messageId, {
+        $set: req.body
+    }, { new: true })
+    .then(message => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(message);
+    })
+    .catch(err => next(err));
 })
-.delete((req, res) => {
-    res.end(`Deleting message: ${req.params.messageId}`);
+.delete((req, res, next) => {
+    Message.findByIdAndDelete(req.params.messageId)
+    .then(response => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(response);
+    })
+    .catch(err => next(err));
 });
 
 module.exports = messageRouter;

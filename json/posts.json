@@ -1,0 +1,45 @@
+{
+    "posts": [
+        {
+            "author" : "Ivan Hernandez",
+            "caption": "What a wonderful view!",
+            "image": "https://images.unsplash.com/photo-1518664196161-4bef8d483164?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8dmlld3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+            "likes": 255,
+            "comments": [
+                {
+                    "author" : "Ivan Hernandez",
+                    "text": "Nice Post!",
+                    "likes": 3
+                },   
+                {
+                    "author" : "Walter Macedo",
+                    "text": "Cool Pic!",
+                    "likes": 3
+                }
+        
+            ]
+        },   
+    
+        {
+            "author" : "Walter Macedo",
+            "caption": "Saturday Night!",
+            "image": "https://images.unsplash.com/photo-1504326008149-71dbc00aa3ae?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjd8fG5pZ2h0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+            "likes": 301,
+            "comments": [
+                {
+                    "author" : "Ivan Hernandez",
+                    "text": "Nice Post!",
+                    "likes": 2
+                },   
+                {
+                    "author" : "Walter Macedo",
+                    "text": "Cool Pic!",
+                    "likes": 2
+                }
+        
+            ]
+        }
+
+    ]
+   
+}

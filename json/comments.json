@@ -1,0 +1,31 @@
+
+
+{
+    "comments": [
+        {
+            "author" : "Ivan Hernandez",
+            "text": "Nice Post!",
+            "likes": 3
+        },   
+        {
+            "author" : "Walter Macedo",
+            "text": "Cool Pic!",
+            "likes": 3
+        },
+        {
+            "author" : "John Ashburn",
+            "text": "Love it",
+            "likes": 1
+        },   
+        {
+            "author" : "Lucy Hdz",
+            "text": "So pretty",
+            "likes": 0
+        },   
+        {
+            "author" : "Julie A",
+            "text": "Amazing",
+            "likes": 0
+        }
+    ]  
+}
